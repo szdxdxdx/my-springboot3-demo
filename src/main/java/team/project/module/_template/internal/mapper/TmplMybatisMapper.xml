@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="team.project.module._template.internal.mapper.TmplMybatisMapper">
+
+    <!-- 复杂的 sql 语句写在 xml 文件中以便维护 -->
+
+    <!-- mapper.xml 文件和 mapper.java 文件可以写在同一个目录 -->
+
+    <!-- 使用 resultMap 将数据库字段和 java 类属性映射到一起（mybatis-plus 的注解对 xml 里的 SQL 不起作用） -->
+    <resultMap id="TmplDO" type="team.project.module._template.internal.model.entity.TmplDO">
+        <!-- 数据库字段 -->                  <!-- java 类属性 -->
+        <result column="is_deleted"         property="deleted" />
+        <result column="id"                 property="id" />
+<!--    <result column="create_time"        property="createTime" />
+        <result column="update_time"        property="updateTime" />    -->
+        <result column="str"                property="str" />
+    </resultMap>
+
+    <select id="list" resultMap="TmplDO">
+        select * from tbl_tmp_test; <!-- 示例 -->
+    </select>
+
+</mapper>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>登录</title>
+</head>
+
+<body>
+  <p style="margin-top: 30vh; text-align: center;">请选择账户快速登录，选择后跳转 swagger 页面：</p>
+  <select style="display: block; margin: 0 auto; font-size: 1.2em;"><option selected value=""></option>
+
+    <!--                 自行按下述格式添加账户：
+
+    <option data-uid="???" data-pwd="???"> 账号描述 </option>
+
+    -->
+
+  </select>
+  <p style="color: lightgray; text-align: center;">添加账户请自行修改：src/main/resources/static/html/test/swagger-with-login.html</p>
+
+  <script>
+
+    document.querySelector('select').addEventListener('input', (event) => {
+      event.preventDefault();
+      const selected_option = event.target.options[event.target.selectedIndex];
+
+      fetch('???', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({
+          ???: selected_option.dataset['uid'],
+          ???:     selected_option.dataset['pwd']
+        })
+      })
+      .then(resp => {
+        if (resp) {
+          window.location.href = '/swagger-ui/index.html';
+        } else {
+          alert("登录失败");
+        }
+      })
+      .catch(error => {
+        alert("登录失败");
+      });
+    });
+  </script>
+</body>
+
+</html>

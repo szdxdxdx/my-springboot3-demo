@@ -1,0 +1,64 @@
+
+server:
+  # 服务端口
+  port: 3456
+
+
+
+spring:
+  config:
+    # 引入各类配置文件
+    import:
+      - classpath:config/database-config.yml      # 数据库
+      - classpath:config/file-storage-config.yml  # 文件存储
+      - classpath:config/email-config.yml         # 邮件
+  servlet:
+    multipart:
+      # 限制单个上传文件的大小
+      max-file-size: 10MB
+      # 限制整个请求的大小
+      max-request-size: 20MB
+
+
+
+logging:
+  # 引入日志配置文件
+  config: classpath:config/logback.xml
+
+
+
+mybatis-plus:
+  # mapper xml 路径
+  mapper-locations: classpath*:team/project/module/**/mapper/*.xml
+  global-config:
+    # 关闭 mybatis-plus 启动时输出的命令行字符画
+    banner: false
+  configuration:
+    # 关闭下划线命名和驼峰命名的自动转换，必须使用注解指定数据库字段名
+    map-underscore-to-camel-case: false
+    # 输出执行的 sql
+    log-impl: team.project.config.mybatisplus.SqlLogConfig
+
+
+
+sa-token:
+  # token 名称（同时也是 cookie 名称）
+  token-name: guet-s-c-m-s-token
+  # token 有效期（单位：秒） 默认30天，-1 代表永久有效
+  timeout: 2592000
+  # token 最低活跃频率（单位：秒），如果 token 超过此时间没有访问系统就会被冻结，默认 -1 代表不限制，永不冻结
+  active-timeout: -1
+  # 是否允许同一账号多地同时登录 （为 true 时允许一起登录, 为 false 时新登录挤掉旧登录）
+  is-concurrent: true
+  # 在多人登录同一账号时，是否共用一个 token （为 true 时所有登录共用一个 token, 为 false 时每次登录新建一个 token）
+  is-share: true
+  # token 风格（默认可取值：uuid、simple-uuid、random-32、random-64、random-128、tik）
+  token-style: uuid
+  # 输出操作日志
+  is-log: true
+  # 日志等级
+  log-level: debug
+  # 关闭 sa-token 启动时输出的命令行字符画
+  is-print: false
+
+

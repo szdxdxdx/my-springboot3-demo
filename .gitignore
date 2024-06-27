@@ -1,0 +1,19 @@
+# 项目的构建目录
+/target/
+
+# 测试
+/src/test/
+
+# intelliJ idea 相关
+.idea
+*.iws
+*.iml
+*.ipr
+
+# 部分涉密的配置
+/src/main/resources/config/database-config.yml
+/src/main/resources/config/file-storage-config.yml
+/src/main/resources/config/email-config.yml
+
+# 日志
+logs/

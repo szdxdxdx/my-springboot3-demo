@@ -1,0 +1,18 @@
+
+# 修改此模板，并将修改后的文件 [剪切] 到 /config 目录
+
+spring:
+  datasource:
+    # 数据库驱动
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # 数据库连接地址
+    url: jdbc:mysql://   ip:port   /   database-name   ?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTCallowPublicKeyRetrieval=true
+    # 用户名
+    username:      x  # <- 请勿泄露
+    # 密码
+    password:      x  # <- 请勿泄露
+    hikari:
+      # 连接池最大生存时间（单位：毫秒）
+      max-lifetime: 1800000
+      # 连接池最大空闲时间（单位：毫秒）
+      keepalive-time: 60000

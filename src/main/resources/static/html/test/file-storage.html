@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>测试 - 文件存储</title>
+
+  <style>
+    :root {
+      --color-primary-light: #81b2b4;
+      --color-primary: #629698;
+    }
+
+    body {
+      margin: 0;
+      display: flex;
+    }
+  </style>
+
+  <style>
+    /* 表单 */
+    form.green_form {
+      margin: 8px;
+      margin-right: 2px;
+      font-size: 17px;
+      height: fit-content;
+      width: max(20em, 30vw);
+      display: flex;
+      flex-direction: column;
+      border: 1.5px solid var(--color-primary);
+      padding-bottom: 0.2em;
+    }
+
+    /* 标题 */
+    form.green_form > h1 {
+      margin: 0 0 0.5em 0;
+      padding: 0.2em 0 0.3em 0.5em;
+      font-size: 1em;
+      color: white;
+      background-color: var(--color-primary);
+    }
+
+    /* 表单项 */
+    form.green_form > label {
+      display: flex;
+      padding: 0.2em 0.5em;
+    }
+    form.green_form > label > span {
+      min-width: 5em;
+      margin-left: 0.2em;
+      margin-right: 0.5em;
+      position: relative;
+    }
+    form.green_form > label > span.required::before {
+      content: "*";
+      color: red;
+      position: absolute;
+      top: 0.15em;
+      left: -0.55em;
+    }
+
+    /* 文件选择框 */
+    form.green_form > label > input[type="file"] {
+      width: 100%;
+      padding-left: 0.5em;
+      line-height: 1.6em;
+      border: 1px solid var(--color-primary);
+      cursor: pointer;
+    }
+    form.green_form > label > input[type="file"]::file-selector-button {
+      display: none;
+    }
+
+    /* 下拉选择菜单 */
+    form.green_form > label > select {
+      flex: 1;
+      padding-left: 0.2em;
+      border: 1px solid var(--color-primary);
+      outline: none;
+    }
+    form.green_form > label > select > option {
+      font-size: 1.2em;
+    }
+
+    /* 单行文本框 */
+    form.green_form > label > input[type="text"] {
+      flex: 1;
+      padding-left: 0.5em;
+      border: 1px solid var(--color-primary);
+      outline: none;
+    }
+
+    /* 单选框 */
+    form.green_form > label > label > input[type="checkbox"] {
+      display: none;
+    }
+    form.green_form > label > label > input[type="checkbox"] + span {
+      display: inline-block;
+      height: 100%;
+      width: 1em;
+      border: 1px solid var(--color-primary);
+      cursor: pointer;
+      position: relative;
+    }
+    form.green_form > label > label > input[type="checkbox"]:checked + span::after {
+      content: "√";
+      position: absolute;
+      left: 15%;
+    }
+
+    /* 日期选择器 */
+    form.green_form > label > input[type="datetime-local"] {
+      flex: 1;
+      padding-left: 0.5em;
+      border: 1px solid var(--color-primary);
+      outline: none;
+    }
+
+    /* 多行文本框 */
+    form.green_form > label > textarea {
+      width: 100%;
+      min-height: 9em;
+      padding-left: 0.2em;
+      border: 1px solid var(--color-primary);
+      outline: none;
+      resize: vertical;
+      font-weight: bold;
+      scroll-behavior: smooth;
+    }
+
+    /* 段落 */
+    form.green_form > p {
+      margin: 0;
+      padding: 0.3em 0.6em;
+      font-size: 0.8em;
+      font-style: italic;
+    }
+
+    /* 按钮 */
+    form.green_form > label > button {
+      width: fit-content;
+      margin-left: auto;
+      margin-right: 0;
+      padding: 0.3em 1.2em;
+      color: white;
+      background-color: var(--color-primary);
+      border: 1px solid var(--color-primary);
+      font-size: 14px;
+      cursor: pointer;
+    }
+    form.green_form > label > button:hover {
+      background-color: var(--color-primary-light);
+    }
+    form.green_form > label > button:active {
+      color: var(--color-primary);
+      background-color: white;
+    }
+  </style>
+
+  <style>
+    /* 输出 */
+    div#output {
+      margin: 8px;
+      margin-left: 2px;
+      flex: 1;
+      border: 1.5px solid var(--color-primary);
+    }
+    div#output > iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div style="overflow-y: scroll; height: 100vh;">
+
+    <form action="/upload_file" method="post" enctype="multipart/form-data" target="output" class="green_form">
+      <h1>上传文件</h1>
+      <label for=""><span class="required">选择文件</span>
+        <input type="file" name="file">
+      </label>
+      <label><span class="required">存储类型</span>
+        <select name="storage_type">
+          <option value=""></option>
+          <option value="LOCAL">本地文件系统</option>
+          <option value="CLOUD">云存储空间</option>
+        </select>
+      </label>
+      <label><span>指定目录</span>
+        <input type="text" name="folder" placeholder="/">
+      </label>
+      <label><span>重命名文件</span>
+        <input type="text" name="filename" placeholder="含扩展名">
+      </label>
+      <label for=""><span>覆盖上传</span>
+        <label><input type="checkbox" name="overwrite"><span></span></label>
+      </label>
+      <label for="">
+        <button type="submit">上传文件</button>
+      </label>
+    </form>
+
+    <form action="" method="get" target="output" class="green_form">
+      <h1>获取访问已上传的文件</h1>
+      <label><span class="required">file_id</span>
+        <input type="text" name="file_id">
+      </label>
+      <label for="">
+        <button type="submit" formaction="/get_file_url">获取 url</button>
+        <button type="submit" formaction="/get_file" style="margin-left: 1em;">获取文件</button>
+      </label>
+    </form>
+
+    <form action="/delete_file" method="post" target="output" class="green_form">
+      <h1>删除已上传的文件</h1>
+      <label><span class="required">file_id</span>
+        <input type="text" name="file_id">
+      </label>
+      <label for="">
+        <button type="submit">删除文件</button>
+      </label>
+    </form>
+
+    <form action="/upload_text" method="post" target="output" class="green_form">
+      <h1>上传一段文本，将其存为文本文件</h1>
+      <label><span>文本内容</span>
+        <textarea name="content"></textarea>
+      </label>
+      <label><span class="required">存储类型</span>
+        <select name="storage_type">
+          <option value=""></option>
+          <option value="LOCAL">本地文件系统</option>
+          <option value="CLOUD">云存储空间</option>
+        </select>
+      </label>
+      <label><span>指定目录</span>
+        <input type="text" name="folder" placeholder="/">
+      </label>
+      <label><span class="required">文件名</span>
+        <input type="text" name="filename" placeholder="含扩展名">
+      </label>
+      <label for=""><span>覆盖上传</span>
+        <label><input type="checkbox" name="overwrite"><span></span></label>
+      </label>
+      <label for="">
+        <button type="submit">上传</button>
+      </label>
+    </form>
+
+    <form action="/get_text" method="get" target="output" class="green_form">
+      <h1>读取纯文本文件里的内容</h1>
+      <label><span class="required">file_id</span>
+        <input type="text" name="file_id">
+      </label>
+      <label for="">
+        <button type="submit">读取</button>
+      </label>
+    </form>
+
+    <form action="/" method="get" target="output" class="green_form">
+      <h1>快速链接</h1>
+      <label for="">
+        <button type="submit" formaction="/swagger-ui/index.html" style="margin-left: 0;">跳转 swagger</button>
+      </label>
+      <label for="">
+        <button type="submit" formaction="/html/test/swagger-with-login.html" style="margin-left: 0;">跳转 swagger（快速登录）</button>
+      </label>
+    </form>
+
+  </div>
+
+  <div id="output" >
+    <iframe name="output"></iframe>
+  </div>
+
+</body>
+</html>
