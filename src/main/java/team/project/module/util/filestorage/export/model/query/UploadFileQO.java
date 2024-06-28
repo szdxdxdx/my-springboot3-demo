@@ -11,9 +11,9 @@ public class UploadFileQO {
 
     /**
      * <p>  指定存储目录
-     * <br> 默认使用根目录，根目录用 "/"（传 null 或 "" 也表示使用根目录）
+     * <br> 默认使用根目录（传 null、"/" 或 "" 也表示使用根目录）
      *
-     * <p>  路径规则见本模块的 package-info.java
+     * <p>  路径规则见本模块的 {@link team.project.module.util.filestorage package-info.java}
      * <p>  处理路径、文件名可以使用工具类：{@link FilenameUtils}、{@link FileStorageUtil}
      * */
     String targetFolder = "/";

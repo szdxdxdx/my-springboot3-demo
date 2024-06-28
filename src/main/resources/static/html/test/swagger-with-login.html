@@ -10,14 +10,30 @@
   <p style="margin-top: 30vh; text-align: center;">请选择账户快速登录，选择后跳转 swagger 页面：</p>
   <select style="display: block; margin: 0 auto; font-size: 1.2em;"><option selected value=""></option>
 
-    <!--                 自行按下述格式添加账户：
+    <!--                  自行按下述格式添加账户：
 
-    <option data-uid="???" data-pwd="???"> 账号描述 </option>
+    <option data-uid=" " data-pwd=" "> 账号描述 </option>
+
+                          如果你是第一次添加账户：
+
+    1. 删除下面的所有 option
+    2. 复制上面的 option，粘贴到下面
+    3. 修改 data-uid 和 data-pwd 的值，分别对应登录需要的账号和密码
+    4. ctrl + F 搜索 ???，依次修改各个 ???（按提示修改）
+    5. 试登录成功后，你可以删除这个注释了
 
     -->
 
+    <option data-uid="" data-pwd=""> 如果一些 api 需要登录后才能使用 </option>
+    <option data-uid="" data-pwd=""> 你可以使用此页面进行快速登录 </option>
+    <option data-uid="" data-pwd=""> 登录后会跳转到 swagger 页面 </option>
+    <option data-uid="" data-pwd=""> ------------------------- </option>
+    <option data-uid="" data-pwd=""> 当前你还没有添加账号，若要添加账号 </option>
+    <option data-uid="" data-pwd=""> 请自行修改下方地址给出的 html 文件 </option>
+
+
   </select>
-  <p style="color: lightgray; text-align: center;">添加账户请自行修改：src/main/resources/static/html/test/swagger-with-login.html</p>
+  <p style="color: gray; text-align: center;">添加账户请自行修改：src/main/resources/static/html/test/swagger-with-login.html</p>
 
   <script>
 
@@ -25,13 +41,13 @@
       event.preventDefault();
       const selected_option = event.target.options[event.target.selectedIndex];
 
-      fetch('???', {
+      fetch('??? <- 这里输入你的 api', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
         body: JSON.stringify({
-          ???: selected_option.dataset['uid'],
-          ???:     selected_option.dataset['pwd']
+          ??? <- 这里输入 api 所需的账号参数 : selected_option.dataset['uid'],
+          ??? <- 这里输入 api 所需的密码参数 : selected_option.dataset['pwd']
         })
       })
       .then(resp => {

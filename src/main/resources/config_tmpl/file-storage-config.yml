@@ -5,7 +5,7 @@ file-storage:
   # 本地文件系统（在哪里运行这个后端，哪里就是“本地”）
   local-file-system:
     # 存储所有文件和文件夹的根目录，配绝对路径
-    root-folder:        X # D:/xxx/yyy
+    root-folder:        x # D:/xxx/yyy
   # 阿里云 OSS（对象存储服务）
   aliyun-oss:
     # 外网访问的地域节点

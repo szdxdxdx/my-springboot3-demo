@@ -39,3 +39,4 @@
 
 1. 修改 pom.xml 中的 artifactId 和 name，改为你的项目名字
 2. 按照 resources/config_tmpl/readme.txt 修改各配置文件
+3. 启动 team.project 包下的 Application

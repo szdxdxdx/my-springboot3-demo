@@ -6,7 +6,7 @@ spring:
     # 数据库驱动
     driver-class-name: com.mysql.cj.jdbc.Driver
     # 数据库连接地址
-    url: jdbc:mysql://   ip:port   /   database-name   ?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTCallowPublicKeyRetrieval=true
+    url: jdbc:mysql://   ip:port   /   database-name   ?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
     # 用户名
     username:      x  # <- 请勿泄露
     # 密码
