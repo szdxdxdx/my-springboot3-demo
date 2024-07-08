@@ -20,9 +20,9 @@ public @interface QueryParam {
 下文将介绍：
 
     1. 为什么要定义这个注解？
-    2. 如何使用此注解？       <- ! important
+    2. 如何使用此注解？       <- important
     3. 这个注解是如何工作的？
-    4. 这个注解有什么缺陷？    <- ! important
+    4. 这个注解有什么缺陷？    <- important
 
 ==========================
 

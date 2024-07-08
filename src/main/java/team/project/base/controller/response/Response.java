@@ -17,7 +17,7 @@ public class Response<T> {
     public Response(ServiceStatus status) {
         this.statusCode = status.getStatusCode();
         this.statusText = status.getStatusText();
-        this.data       = ""; /* 依前端要求 data 不能为 null，故初值设为空字符串 */
+        this.data       = null;
     }
 
     public Response<T> statusText(String statusText) {
